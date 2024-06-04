@@ -8,8 +8,8 @@ public record TelefoneRequest(
 
         String numero,
 
-        AbstractRequest fabricante,
+        FabricanteRequest fabricante,
 
-        AbstractRequest funcionario
+        FuncionarioRequest funcionario
 ) {
 }

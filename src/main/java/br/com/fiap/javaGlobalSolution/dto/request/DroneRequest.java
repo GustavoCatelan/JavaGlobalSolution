@@ -14,6 +14,6 @@ public record DroneRequest (
 
         LocalDate dataFabricacao,
 
-        AbstractRequest fabricante
+        FabricanteRequest fabricante
 ){
 }
