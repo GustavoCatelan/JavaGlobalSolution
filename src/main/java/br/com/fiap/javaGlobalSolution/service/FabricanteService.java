@@ -48,8 +48,8 @@ public class FabricanteService implements ServiceDTO<Fabricante, FabricanteReque
     }
 
     @Override
-    public Optional<Fabricante> findById(Long id) {
-        return repo.findById(id);
+    public Fabricante findById(Long id) {
+        return repo.findById(id).orElse(null);
     }
 
     @Override

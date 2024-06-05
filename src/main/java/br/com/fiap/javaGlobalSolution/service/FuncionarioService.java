@@ -54,8 +54,8 @@ public class FuncionarioService implements ServiceDTO<Funcionario, FuncionarioRe
     }
 
     @Override
-    public Optional<Funcionario> findById(Long id) {
-        return repo.findById(id);
+    public Funcionario findById(Long id) {
+        return repo.findById(id).orElse(null);
     }
 
     @Override

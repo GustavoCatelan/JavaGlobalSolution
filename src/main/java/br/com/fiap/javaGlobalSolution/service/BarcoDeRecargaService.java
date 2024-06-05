@@ -50,8 +50,8 @@ public class BarcoDeRecargaService implements ServiceDTO<BarcoDeRecarga, BarcoDe
     }
 
     @Override
-    public Optional<BarcoDeRecarga> findById(Long id) {
-        return repo.findById(id);
+    public BarcoDeRecarga findById(Long id) {
+        return repo.findById(id).orElse(null);
     }
 
     @Override

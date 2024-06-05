@@ -1,5 +1,7 @@
 package br.com.fiap.javaGlobalSolution.dto.request;
 
+import org.springframework.lang.Nullable;
+
 public record TelefoneRequest(
 
         String ddi,
@@ -8,8 +10,8 @@ public record TelefoneRequest(
 
         String numero,
 
-        FabricanteRequest fabricante,
+        AbstractRequest fabricante,
 
-        FuncionarioRequest funcionario
+        AbstractRequest funcionario
 ) {
 }

@@ -8,8 +8,8 @@ public record CoordenadaRequest (
 
         Double altitude,
 
-        DroneRequest drone,
+        AbstractRequest drone,
 
-        BarcoDeRecargaRequest barcoDeRecarga
+        AbstractRequest barcoDeRecarga
 ){
 }

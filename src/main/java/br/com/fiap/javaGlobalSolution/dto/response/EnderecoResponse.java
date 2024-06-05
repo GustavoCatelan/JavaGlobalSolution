@@ -1,6 +1,7 @@
 package br.com.fiap.javaGlobalSolution.dto.response;
 
 import lombok.Builder;
+import org.springframework.lang.Nullable;
 
 @Builder
 public record EnderecoResponse(

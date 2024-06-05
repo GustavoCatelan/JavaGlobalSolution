@@ -25,7 +25,7 @@ public class DroneService implements ServiceDTO<Drone, DroneRequest, DroneRespon
     @Override
     public Drone toEntity(DroneRequest r) {
 
-        var fabricante = fabricanteService.toEntity(r.fabricante());
+        var fabricante = fabricanteService.findById(r.fabricante().id());
 
         return Drone.builder()
                 .modelo(r.modelo())
@@ -59,8 +59,8 @@ public class DroneService implements ServiceDTO<Drone, DroneRequest, DroneRespon
     }
 
     @Override
-    public Optional<Drone> findById(Long id) {
-        return repo.findById(id);
+    public Drone findById(Long id) {
+        return repo.findById(id).orElse(null);
     }
 
     @Override

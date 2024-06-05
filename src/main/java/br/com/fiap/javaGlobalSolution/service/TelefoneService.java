@@ -2,6 +2,7 @@ package br.com.fiap.javaGlobalSolution.service;
 
 import br.com.fiap.javaGlobalSolution.dto.request.TelefoneRequest;
 import br.com.fiap.javaGlobalSolution.dto.response.TelefoneResponse;
+import br.com.fiap.javaGlobalSolution.entity.Fabricante;
 import br.com.fiap.javaGlobalSolution.entity.Telefone;
 import br.com.fiap.javaGlobalSolution.repository.TelefoneRepository;
 import lombok.RequiredArgsConstructor;
@@ -9,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
 
+import javax.swing.text.html.parser.Entity;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -29,12 +31,12 @@ public class TelefoneService implements ServiceDTO<Telefone, TelefoneRequest, Te
     @Override
     public Telefone toEntity(TelefoneRequest r) {
 
-        var fabricante = fabricanteService.toEntity(r.fabricante());
+        var fabricante = fabricanteService.findById(r.fabricante().id());
         if (Objects.isNull(fabricante)){
             return null;
         }
 
-        var funcionario = funcionarioService.toEntity(r.funcionario());
+        var funcionario = funcionarioService.findById(r.funcionario().id());
         if (Objects.isNull(funcionario)){
             return null;
         }
@@ -81,8 +83,8 @@ public class TelefoneService implements ServiceDTO<Telefone, TelefoneRequest, Te
     }
 
     @Override
-    public Optional<Telefone> findById(Long id) {
-        return repo.findById(id);
+    public Telefone findById(Long id) {
+        return repo.findById(id).orElse(null);
     }
 
     @Override

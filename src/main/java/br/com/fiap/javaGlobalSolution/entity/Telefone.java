@@ -1,5 +1,6 @@
 package br.com.fiap.javaGlobalSolution.entity;
 
+import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;

@@ -14,8 +14,8 @@ public record EnderecoRequest (
 
         String estado,
 
-        FabricanteRequest fabricante,
+        AbstractRequest fabricante,
 
-        FuncionarioRequest funcionario
+        AbstractRequest funcionario
 ){
 }

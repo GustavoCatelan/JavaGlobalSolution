@@ -29,12 +29,12 @@ public class EnderecoService implements ServiceDTO<Endereco, EnderecoRequest, En
     @Override
     public Endereco toEntity(EnderecoRequest r) {
 
-        var fabricante = fabricanteService.toEntity(r.fabricante());
+        var fabricante = fabricanteService.findById(r.fabricante().id());
         if (Objects.isNull(fabricante)){
             return null;
         }
 
-        var funcionario = funcionarioService.toEntity(r.funcionario());
+        var funcionario = funcionarioService.findById(r.funcionario().id());
         if (Objects.isNull(funcionario)){
             return null;
         }
@@ -87,8 +87,8 @@ public class EnderecoService implements ServiceDTO<Endereco, EnderecoRequest, En
     }
 
     @Override
-    public Optional<Endereco> findById(Long id) {
-        return repo.findById(id);
+    public Endereco findById(Long id) {
+        return repo.findById(id).orElse(null);
     }
 
     @Override

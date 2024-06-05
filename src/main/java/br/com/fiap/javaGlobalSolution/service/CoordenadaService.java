@@ -29,12 +29,12 @@ public class CoordenadaService implements ServiceDTO<Coordenada, CoordenadaReque
     @Override
     public Coordenada toEntity(CoordenadaRequest r) {
 
-        var drone = droneService.toEntity(r.drone());
+        var drone = droneService.findById(r.drone().id());
         if (Objects.isNull(drone)){
             return null;
         }
 
-        var barcoDeRecarga = barcoDeRecargaService.toEntity(r.barcoDeRecarga());
+        var barcoDeRecarga = barcoDeRecargaService.findById(r.barcoDeRecarga().id());
         if (Objects.isNull(barcoDeRecarga)){
             return null;
         }
@@ -77,8 +77,8 @@ public class CoordenadaService implements ServiceDTO<Coordenada, CoordenadaReque
     }
 
     @Override
-    public Optional<Coordenada> findById(Long id) {
-        return repo.findById(id);
+    public Coordenada findById(Long id) {
+        return repo.findById(id).orElse(null);
     }
 
     @Override
