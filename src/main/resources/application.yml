@@ -1,5 +1,14 @@
 server:
   port: 80
+  error:
+    include-stacktrace: never
 spring:
+  thymeleaf:
+    check-template-location: false
   profiles:
     active: homologacao
+  servlet:
+    multipart:
+      max-file-size: 1GB
+      max-request-size: 1GB
+

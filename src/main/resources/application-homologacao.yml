@@ -1,12 +1,16 @@
 spring:
   datasource:
-    url: jdbc:oracle:thin:@oracle.fiap.com.br:1521:ORCL
-    username: rm551823
-    password: 080904
+    url: jdbc:oracle:${DB_HOMOLOG_SERVER:thin:@oracle.fiap.com.br}:${DB_HOMOLOG_PORT:1521}:${DB_HOMOLOG_NAME:ORCL}
+    username: ${DB_HOMOLOG_USERNAME:rm551823}
+    password: ${DB_HOMOLOG_PASSWORD:080904}
   jpa:
-    hibernate:
-      ddl-auto: update
+    open-in-view: false
     show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+        hbm2ddl:
+          auto: create
 
 # swagger-ui custom path
 springdoc:
