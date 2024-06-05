@@ -3,6 +3,7 @@ package br.com.fiap.javaGlobalSolution.service;
 import br.com.fiap.javaGlobalSolution.dto.request.TelefoneRequest;
 import br.com.fiap.javaGlobalSolution.dto.response.TelefoneResponse;
 import br.com.fiap.javaGlobalSolution.entity.Fabricante;
+import br.com.fiap.javaGlobalSolution.entity.Funcionario;
 import br.com.fiap.javaGlobalSolution.entity.Telefone;
 import br.com.fiap.javaGlobalSolution.repository.TelefoneRepository;
 import lombok.RequiredArgsConstructor;
@@ -35,11 +36,17 @@ public class TelefoneService implements ServiceDTO<Telefone, TelefoneRequest, Te
         if (Objects.isNull(fabricante)){
             return null;
         }
+        Funcionario funcionario = null;
 
-        var funcionario = funcionarioService.findById(r.funcionario().id());
-        if (Objects.isNull(funcionario)){
-            return null;
+        if(Objects.nonNull(r.funcionario().id())){
+
+             funcionario = funcionarioService.findById(r.funcionario().id());
+            if (Objects.isNull(funcionario)){
+                return null;
+            }
         }
+
+
 
         return Telefone.builder()
                 .ddi(r.ddi())
@@ -55,7 +62,7 @@ public class TelefoneService implements ServiceDTO<Telefone, TelefoneRequest, Te
     public TelefoneResponse toResponse(Telefone e) {
 
         var fabricante = fabricanteService.toResponse(e.getFabricante());
-        if (Objects.isNull(fabricante)){
+        if (Objects.isNull(e.getFabricante())){
             return null;
         }
 
