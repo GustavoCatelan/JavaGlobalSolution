@@ -10,7 +10,7 @@ spring:
       hibernate:
         format_sql: true
         hbm2ddl:
-          auto: update
+          auto: create
 
 # swagger-ui custom path
 springdoc:
