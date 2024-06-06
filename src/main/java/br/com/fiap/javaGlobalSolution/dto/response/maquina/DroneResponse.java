@@ -10,10 +10,6 @@ public record DroneResponse (
 
         Long id,
 
-        String modelo,
-
-        String marca,
-
         String distanciaMaxima,
 
         String duracaoBateria,

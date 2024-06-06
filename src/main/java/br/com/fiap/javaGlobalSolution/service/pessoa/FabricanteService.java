@@ -28,9 +28,7 @@ public class FabricanteService implements ServiceDTO<Fabricante, FabricanteReque
         var pessoa = pessoaService.findById(r.pessoa().id());
 
         return Fabricante.builder()
-                .nome(r.nome())
                 .email(r.email())
-                .cnpj(r.cnpj())
                 .setor(r.setor())
                 .pessoa(pessoa)
                 .build();
@@ -43,9 +41,7 @@ public class FabricanteService implements ServiceDTO<Fabricante, FabricanteReque
 
         return FabricanteResponse.builder()
                 .id(e.getId())
-                .nome(e.getNome())
                 .email(e.getEmail())
-                .cnpj(e.getCnpj())
                 .setor(e.getSetor())
                 .pessoa(pessoa)
                 .build();

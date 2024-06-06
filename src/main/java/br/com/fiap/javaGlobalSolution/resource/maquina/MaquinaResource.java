@@ -33,9 +33,6 @@ public class MaquinaResource implements ResourceDTO<MaquinaRequest, MaquinaRespo
     @Autowired
     private final MaquinaService service;
 
-    @Autowired
-    private final CoordenadaService coordenadaService;
-
     @GetMapping
     public ResponseEntity<Collection<MaquinaResponse>> findAll(
 
@@ -91,34 +88,4 @@ public class MaquinaResource implements ResourceDTO<MaquinaRequest, MaquinaRespo
         return ResponseEntity.created(uri).body(response);
     }
 
-    @GetMapping(value = "/{id}/coordenada")
-    public ResponseEntity<CoordenadaResponse> findCoordenadaByDrone(@PathVariable Long id) {
-        var coordenada = coordenadaService.findById(id);
-        var response = coordenadaService.toResponse(coordenada);
-        return ResponseEntity.ok(response);
-    }
-
-    @Transactional
-    @PostMapping(value = "/{id}/coordenada")
-    public ResponseEntity<CoordenadaResponse> save(@PathVariable Long id, @RequestBody CoordenadaRequest coordenada) {
-
-        Maquina maquina = service.findById(id);
-
-        if (Objects.isNull(coordenada)) return ResponseEntity.badRequest().build();
-
-        var entity = coordenadaService.toEntity(coordenada);
-
-        entity.setMaquina(maquina);
-
-        Coordenada saved = coordenadaService.save(entity);
-        var response = coordenadaService.toResponse(saved);
-
-        URI uri = ServletUriComponentsBuilder
-                .fromCurrentRequestUri()
-                .path("/{id}")
-                .buildAndExpand(saved.getId())
-                .toUri();
-
-        return ResponseEntity.created(uri).body(response);
-    }
 }

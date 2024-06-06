@@ -7,8 +7,6 @@ public record BarcoDeRecargaResponse(
 
         Long id,
 
-        String modelo,
-
         String quantidadeFuncionario,
 
         String velocidadeMaxima,

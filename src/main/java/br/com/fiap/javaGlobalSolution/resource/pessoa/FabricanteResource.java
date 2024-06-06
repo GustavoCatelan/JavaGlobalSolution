@@ -38,16 +38,12 @@ public class FabricanteResource implements ResourceDTO<FabricanteRequest, Fabric
     @GetMapping
     public ResponseEntity<Collection<FabricanteResponse>> findAll(
 
-            @RequestParam(name = "nome", required = false) String nome,
             @RequestParam(name = "email", required = false) String email,
-            @RequestParam(name = "cnpj", required = false) String cnpj,
             @RequestParam(name = "setor", required = false) String setor
     ) {
 
         var fabricante = Fabricante.builder()
-                .nome(nome)
                 .email(email)
-                .cnpj(cnpj)
                 .setor(setor)
                 .build();
 

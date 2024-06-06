@@ -7,11 +7,7 @@ public record FabricanteResponse(
 
         Long id,
 
-        String nome,
-
         String email,
-
-        String cnpj,
 
         String setor,
 

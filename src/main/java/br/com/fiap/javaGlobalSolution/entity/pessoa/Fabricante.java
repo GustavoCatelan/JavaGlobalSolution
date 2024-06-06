@@ -24,14 +24,8 @@ public class Fabricante {
     @Column(name = "ID_FABRICANTE")
     private Long id;
 
-    @Column(name = "NOME_FABRICANTE")
-    private String nome;
-
     @Column(name = "EMAIL_FABRICANTE")
     private String email;
-
-    @Column(name = "CNPJ_FABRICANTE")
-    private String cnpj;
 
     @Column(name = "SETOR_FABRICANTE")
     private String setor;

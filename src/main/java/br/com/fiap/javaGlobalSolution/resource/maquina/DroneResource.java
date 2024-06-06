@@ -6,6 +6,7 @@ import br.com.fiap.javaGlobalSolution.dto.response.maquina.CoordenadaResponse;
 import br.com.fiap.javaGlobalSolution.dto.response.maquina.DroneResponse;
 import br.com.fiap.javaGlobalSolution.entity.maquina.Coordenada;
 import br.com.fiap.javaGlobalSolution.entity.maquina.Drone;
+import br.com.fiap.javaGlobalSolution.entity.maquina.Maquina;
 import br.com.fiap.javaGlobalSolution.resource.ResourceDTO;
 import br.com.fiap.javaGlobalSolution.service.maquina.CoordenadaService;
 import br.com.fiap.javaGlobalSolution.service.maquina.DroneService;
@@ -89,6 +90,37 @@ public class DroneResource implements ResourceDTO<DroneRequest, DroneResponse> {
                 .path("/{id}")
                 .buildAndExpand(entity.getId())
                 .toUri();
+        return ResponseEntity.created(uri).body(response);
+    }
+
+    @GetMapping(value = "/{id}/coordenada")
+    public ResponseEntity<CoordenadaResponse> findCoordenadaByDrone(@PathVariable Long id) {
+        var coordenada = coordenadaService.findById(id);
+        var response = coordenadaService.toResponse(coordenada);
+        return ResponseEntity.ok(response);
+    }
+
+    @Transactional
+    @PostMapping(value = "/{id}/coordenada")
+    public ResponseEntity<CoordenadaResponse> save(@PathVariable Long id, @RequestBody CoordenadaRequest coordenada) {
+
+        Drone drone = service.findById(id);
+
+        if (Objects.isNull(coordenada)) return ResponseEntity.badRequest().build();
+
+        var entity = coordenadaService.toEntity(coordenada);
+
+        entity.setMaquina(drone);
+
+        Coordenada saved = coordenadaService.save(entity);
+        var response = coordenadaService.toResponse(saved);
+
+        URI uri = ServletUriComponentsBuilder
+                .fromCurrentRequestUri()
+                .path("/{id}")
+                .buildAndExpand(saved.getId())
+                .toUri();
+
         return ResponseEntity.created(uri).body(response);
     }
 }
