@@ -29,8 +29,6 @@ public class DroneService implements ServiceDTO<Drone, DroneRequest, DroneRespon
         var fabricante = fabricanteService.findById(r.fabricante().id());
 
         return Drone.builder()
-                .modelo(r.modelo())
-                .marca(r.marca())
                 .distanciaMaxima(r.distanciaMaxima())
                 .duracaoBateria(r.duracaoBateria())
                 .dataFabricacao(r.dataFabricacao())
@@ -45,8 +43,6 @@ public class DroneService implements ServiceDTO<Drone, DroneRequest, DroneRespon
 
         return DroneResponse.builder()
                 .id(e.getId())
-                .modelo(e.getModelo())
-                .marca(e.getMarca())
                 .distanciaMaxima(e.getDistanciaMaxima())
                 .duracaoBateria(e.getDuracaoBateria())
                 .dataFabricacao(e.getDataFabricacao())

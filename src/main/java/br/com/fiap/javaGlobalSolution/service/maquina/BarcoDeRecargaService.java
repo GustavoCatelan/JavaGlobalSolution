@@ -23,7 +23,6 @@ public class BarcoDeRecargaService implements ServiceDTO<BarcoDeRecarga, BarcoDe
     public final BarcoDeRecarga toEntity(BarcoDeRecargaRequest r) {
 
         return BarcoDeRecarga.builder()
-                .modelo(r.modelo())
                 .quantidadeFuncionario(r.quantidadeFuncionario())
                 .velocidadeRecarga(r.velocidadeRecarga())
                 .sistemaNavegacao(r.sistemaNavegacao())
@@ -36,7 +35,6 @@ public class BarcoDeRecargaService implements ServiceDTO<BarcoDeRecarga, BarcoDe
 
         return BarcoDeRecargaResponse.builder()
                 .id(e.getId())
-                .modelo(e.getModelo())
                 .quantidadeFuncionario(e.getQuantidadeFuncionario())
                 .velocidadeRecarga(e.getVelocidadeRecarga())
                 .sistemaNavegacao(e.getSistemaNavegacao())
